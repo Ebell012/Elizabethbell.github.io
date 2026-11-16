@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Elizabeth Bell</title>
+<meta name="description" content="Elizabeth Bell, Associate Professor at the LBJ School of Public Affairs, The University of Texas at Austin. Research on administrative burden, policy design and college access.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,500;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  /* Layout: an R Markdown-style academic site. Top navbar, one narrow reading column, pages switched by #hash. */
+  --bg: #ffffff;
+  --surface: #f6f4f2;
+  --ink: #1f1d1b;
+  --muted: #625c56;
+  --rule: #e2ddd8;
+  --accent: #a84b00;          /* burnt orange, darkened for text contrast */
+  --accent-soft: #fbeee3;
+  --font-display: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --font-body: "Source Sans 3", "Helvetica Neue", Arial, sans-serif;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #161514; --surface: #201e1c; --ink: #ece8e3; --muted: #a8a099;
+    --rule: #34302c; --accent: #f08a3c; --accent-soft: #2e2116; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #161514; --surface: #201e1c; --ink: #ece8e3; --muted: #a8a099;
+  --rule: #34302c; --accent: #f08a3c; --accent-soft: #2e2116; color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { scroll-padding-top: 72px; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font: 17px/1.6 var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; text-underline-offset: 2px; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 2px; }
+
+/* ---------- navbar ---------- */
+.nav {
+  position: sticky; top: 0; z-index: 10;
+  background: var(--surface); border-bottom: 1px solid var(--rule);
+}
+.nav-inner {
+  max-width: 960px; margin: 0 auto; padding: 0 20px;
+  display: flex; align-items: center; gap: 24px; min-height: 56px; flex-wrap: wrap;
+}
+.brand { font-family: var(--font-display); font-weight: 600; font-size: 1.25rem; color: var(--ink); }
+.brand:hover { text-decoration: none; color: var(--accent); }
+.nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 4px; flex-wrap: wrap; }
+.nav li a {
+  display: block; padding: 8px 12px; color: var(--muted); font-weight: 600; font-size: .95rem; border-radius: 4px;
+}
+.nav li a:hover { color: var(--ink); background: var(--rule); text-decoration: none; }
+.nav li a[aria-current="page"] { color: var(--ink); box-shadow: inset 0 -2px 0 var(--accent); border-radius: 0; }
+.nav .contact { margin-left: auto; display: flex; gap: 6px; }
+.icon-link { display: inline-flex; padding: 8px; color: var(--muted); border-radius: 4px; }
+.icon-link:hover { color: var(--accent); background: var(--rule); }
+.icon-link svg { width: 20px; height: 20px; fill: currentColor; }
+.ext::after { content: " ↗"; font-weight: 400; }
+
+/* ---------- page ---------- */
+main { max-width: 960px; margin: 0 auto; padding: 40px 20px 72px; }
+.page[hidden] { display: none; }
+h1, h2, h3, h4 { font-family: var(--font-display); text-wrap: balance; color: var(--ink); }
+h1 { font-size: 2.25rem; font-weight: 600; margin: 0 0 24px; line-height: 1.15; }
+h2 { font-size: 1.5rem; font-weight: 600; margin: 0 0 20px; }
+hr { border: 0; border-top: 1px solid var(--rule); margin: 48px 0; }
+
+/* about */
+.about { display: grid; grid-template-columns: 240px 1fr; gap: 40px; align-items: start; }
+.photo {
+  width: 240px; aspect-ratio: 4 / 5; border-radius: 4px; overflow: hidden;
+  background: var(--accent-soft); display: grid; place-items: center;
+}
+.photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.photo .initials { font-family: var(--font-display); font-size: 4rem; color: var(--accent); letter-spacing: .04em; }
+.bio p { margin: 0 0 1em; max-width: 65ch; }
+.bio .lead { font-weight: 700; }
+.quick { display: flex; flex-wrap: wrap; gap: 8px 20px; margin-top: 20px; font-size: .95rem; }
+.quick span { color: var(--muted); }
+
+/* research */
+.jump { display: flex; flex-wrap: wrap; gap: 8px; margin: -8px 0 8px; }
+.jump a { font-size: .9rem; padding: 4px 12px; border: 1px solid var(--rule); border-radius: 999px; color: var(--muted); }
+.jump a:hover { border-color: var(--accent); color: var(--accent); text-decoration: none; }
+.count { font-family: var(--font-body); font-size: .95rem; font-weight: 400; color: var(--muted); margin-left: 8px; }
+.note { color: var(--muted); font-size: .92rem; margin: -10px 0 20px; max-width: 65ch; }
+.paper { padding: 14px 0; border-bottom: 1px solid var(--rule); max-width: 72ch; }
+.paper:last-child { border-bottom: 0; }
+.paper h4 { font-size: 1.08rem; font-weight: 500; line-height: 1.35; margin: 0 0 4px; }
+.paper h4 a { color: var(--ink); background-image: linear-gradient(var(--accent), var(--accent));
+  background-size: 100% 1px; background-position: 0 100%; background-repeat: no-repeat; }
+.paper h4 a:hover { color: var(--accent); text-decoration: none; }
+.paper .with { margin: 0; font-style: italic; color: var(--muted); font-size: .95rem; }
+.paper .venue { margin: 2px 0 0; font-size: .95rem; }
+.tag { display: inline-block; margin-left: 10px; padding: 1px 8px; font-size: .78rem; font-weight: 600;
+  background: var(--accent-soft); color: var(--accent); border-radius: 3px; vertical-align: 1px; }
+.venue .tag:first-child { margin-left: 0; }
+.two { display: grid; grid-template-columns: 1fr 1fr; gap: 0 40px; }
+.two .paper { max-width: none; }
+
+footer { border-top: 1px solid var(--rule); color: var(--muted); font-size: .88rem; }
+footer div { max-width: 960px; margin: 0 auto; padding: 20px; }
+
+@media (max-width: 760px) {
+  .about { grid-template-columns: 1fr; }
+  .photo { width: 180px; }
+  .two { grid-template-columns: 1fr; }
+  h1 { font-size: 1.9rem; }
+}
+@media (prefers-reduced-motion: no-preference) { .page { animation: fade .2s ease-out; } }
+@keyframes fade { from { opacity: .4; } to { opacity: 1; } }
+</style>
+</head>
+<body>
+<nav class="nav" aria-label="Main">
+  <div class="nav-inner">
+    <a class="brand" href="#about">Elizabeth Bell</a>
+    <ul>
+      <li><a href="#about" data-page="about">About Me</a></li>
+      <li><a href="#research" data-page="research">Research</a></li>
+      <li><a class="ext" href="https://scholar.google.com/citations?user=arn1PowAAAAJ&amp;hl=en">Google Scholar</a></li>
+      <li><a class="ext" href="https://utexas.box.com/s/ua3v2akgkozrfo9l27258p5gpwwetide">CV</a></li>
+    </ul>
+    <div class="contact">
+      <a class="icon-link" href="mailto:elizabeth.bell@austin.utexas.edu" title="Email: elizabeth.bell@austin.utexas.edu" aria-label="Email">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Zm1 2.4V17h16V7.4l-8 5.6-8-5.6ZM5.2 7 12 11.8 18.8 7H5.2Z"/></svg>
+      </a>
+      <a class="icon-link" href="https://www.linkedin.com/in/elizabeth-bell-47308a55/" title="LinkedIn" aria-label="LinkedIn">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9.75h4V21H3V9.75Zm6.5 0h3.83v1.54h.06c.53-1 1.84-2.06 3.79-2.06 4.05 0 4.8 2.67 4.8 6.13V21h-4v-5.01c0-1.2-.02-2.74-1.67-2.74-1.67 0-1.93 1.3-1.93 2.65V21h-4V9.75Z"/></svg>
+      </a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <!-- ======================= ABOUT ======================= -->
+  <section class="page" id="page-about" aria-labelledby="h-about">
+    <h1 id="h-about">About Me</h1>
+    <div class="about">
+      <div class="photo">
+        <!-- HEADSHOT: upload your photo to the repository as headshot.jpg (same folder as this file).
+             Until it exists, your initials show instead. -->
+        <img src="headshot.jpg" alt="Elizabeth Bell" onerror="this.remove(); document.getElementById('initials').hidden = false;">
+        <span class="initials" id="initials" aria-hidden="true" hidden>EB</span>
+      </div>
+      <div class="bio">
+        <p class="lead">I am an Associate Professor at the LBJ School of Public Affairs at The University of Texas at Austin. I received my Ph.D. in Political Science from the University of Oklahoma in 2019.</p>
+        <p>My research looks for ways to cut the needless hassles that keep people from public services, make government programs work better, and rebuild trust in government. It has two aims: diagnosing where <a href="#research">policy design and implementation</a> break down, and designing and testing interventions that fix them. Much of this work focuses on college access and affordability, including tuition-free college and Promise programs.</p>
+        <p>Before joining the LBJ School, I taught at Miami University and Florida State University. From 2020 to 2024 I was an Associate Fellow and Academic Affiliate with the Office of Evaluation Sciences at the U.S. General Services Administration, where I ran randomized controlled trials to reduce burdens in federal programs. I have partnered with the Department of Education, the Small Business Administration, the IRS, the Social Security Administration, the Oklahoma State Regents for Higher Education, and Tulsa Community College.</p>
+        <p>My work appears in the <em>Journal of Public Administration Research and Theory</em>, <em>Public Administration Review</em>, the <em>Journal of Politics</em>, the <em>Journal of Policy Analysis and Management</em>, and the <em>American Educational Research Journal</em>, among others. Current projects, funded by Arnold Ventures and the Greater Texas Foundation, evaluate the return on investment of free college programs in Texas.</p>
+        <div class="quick">
+          <div><span>Email</span> <a href="mailto:elizabeth.bell@austin.utexas.edu">elizabeth.bell@austin.utexas.edu</a></div>
+          <div><span>Office</span> 2315 Red River St, Austin, TX 78712</div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ======================= RESEARCH ======================= -->
+  <section class="page" id="page-research" aria-labelledby="h-research" hidden>
+    <h1 id="h-research">Research</h1>
+    <nav class="jump" aria-label="Research sections">
+      <a href="#research" data-jump="s-wp">Working Papers</a>
+      <a href="#research" data-jump="s-peer">Peer-Reviewed Publications</a>
+      <a href="#research" data-jump="s-other">Other Publications</a>
+      <a href="#research" data-jump="s-policy">Policy Reports &amp; Briefs</a>
+      <a href="#research" data-jump="s-progress">Selected Works in Progress</a>
+      <a href="#research" data-jump="s-media">Media</a>
+    </nav>
+
+    <hr>
+    <h2 id="s-wp">Working Papers <span class="count">6</span></h2>
+    <article class="paper"><h4>The Conditional Effects of Customer Experience Reforms: Administrative Burden, Clearance Points, and Program Take-Up</h4><p class="with">with William Schultz, Sebastian Jilke, Rekha Balu, and Elana Safran</p><p class="venue"><em>Journal of Public Administration Research and Theory</em><span class="tag">Conditionally accepted</span></p></article>
+<article class="paper"><h4>Burden by Design? Proceduralism, Bureaucratic Errors, and the Burden Tolerance of Bureaucrats</h4><p class="with">with Wesley Wehde and David Miller</p><p class="venue"><em>Public Administration</em><span class="tag">Revise &amp; resubmit</span></p></article>
+<article class="paper"><h4>How Emotions Shape Behavior: Toward a New Microfoundation in Public Administration Research</h4><p class="with">with Kristina Jessen Hansen and Donald Moynihan</p><p class="venue"><em>American Review of Public Administration</em><span class="tag">Revise &amp; resubmit</span></p></article>
+<article class="paper"><h4>Do Burdens Undermine Democracy? How Voting Burdens Impact Democratic Outcomes</h4><p class="with">with Ryan Lofaro, Colt Jensen, and Donald Moynihan</p><p class="venue"><span class="tag">Under review</span></p></article>
+<article class="paper"><h4>Winning Matters: The Impact of Favorability on Perceived Voting Burdens</h4><p class="with">with Frederik Hansen, Ryan Lofaro, and Colt Jensen</p><p class="venue"><span class="tag">Under review</span></p></article>
+<article class="paper"><h4>Starting at Community College: Vertical Transfer and Student Loan Portfolios</h4><p class="with">with Taylor Delaney</p><p class="venue"><span class="tag">Under review</span></p></article>
+
+    <hr>
+    <h2 id="s-peer">Peer-Reviewed Publications <span class="count">37</span></h2>
+    <article class="paper"><h4>How Sector and Policy Design Moderate Principal-Agent Dynamics: Evidence from State Sexual Misconduct Policies in Higher Education</h4><p class="with">with Jaeyeong Nam, Daniel Fay, and Emily Boykin</p><p class="venue"><i>Journal of Public Administration Research and Theory</i> (Forthcoming)</p></article>
+<article class="paper"><h4><a href="https://onlinelibrary.wiley.com/doi/10.1002/pam.70128">Administrative Burden and the Access-Fraud Trade-Off in Social Welfare Services</a></h4><p class="with">with Sebastian Jilke</p><p class="venue"><i>Journal of Policy Analysis and Management</i> (2026)</p></article>
+<article class="paper"><h4><a href="https://doi.org/10.1093/jopart/muag018">Representative Bureaucracy and Administrative Burdens: Exploring the Intersection of Lived Experience, Gender, and Professional Qualities</a></h4><p class="with">with Ryan Lofaro and Colt Jensen</p><p class="venue"><i>Journal of Public Administration Research and Theory</i> (2026)</p></article>
+<article class="paper"><h4><a href="https://doi.org/10.1080/15309576.2026.2660675">Gendered Bureaucratic Discrimination: How Case Severity, Complexity, and Ambiguity Shapes Prioritization</a></h4><p class="with">with Daniel Fay, Emily Boykin, and Jaeyeong Nam</p><p class="venue"><i>Public Performance and Management Review</i> (2026)</p></article>
+<article class="paper"><h4><a href="https://onlinelibrary.wiley.com/doi/10.1111/psj.70088">Who Deserves Scarce Health and Education Resources? How Policy Context Shapes Target Group Deservingness</a></h4><p class="with">with Monica Schneider, Dara Strolovitch, and Ari Ne’eman</p><p class="venue"><i>Policy Studies Journal</i> (2026)</p></article>
+<article class="paper"><h4><a href="https://www.tandfonline.com/doi/full/10.1080/00221546.2025.2497186">Matching Potential with Promise: How Oklahoma’s Promise Impacts Academic Undermatch</a></h4><p class="with">with Benjamin Skinner, Kylie Smith, and Olivia Morales</p><p class="venue"><i>Journal of Higher Education</i> 97(4): 760–801 (2026)</p></article>
+<article class="paper"><h4>Tuition-Free College Policies and Workforce Diversity: How Policy Incentives and Environmental Favorability Shape Representation</h4><p class="with">with Emily Boykin</p><p class="venue"><i>Public Administration Review</i> (2025)</p></article>
+<article class="paper"><h4>Costly withdrawals reduce future college going: Evidence from Return to Title IV Funds</h4><p class="with">with Ari Anisfeld, Oded Gurantz, and Dennis Kramer</p><p class="venue"><i>Economics of Education Review</i> 109: 102723 (2025)</p></article>
+<article class="paper"><h4><a href="https://www.tandfonline.com/doi/full/10.1080/15309576.2024.2419132">Efficiency or Equity? How Public Values Shape Bureaucrats’ Willingness to Use Artificial Intelligence to Reduce Administrative Burdens</a></h4><p class="with">with Jaeyeong Nam</p><p class="venue"><i>Public Performance and Management Review</i> 48(6): 1268–1301 (2025)</p></article>
+<article class="paper"><h4><a href="https://academic.oup.com/jpart/advance-article/doi/10.1093/jopart/muae004/7602581">Does Administrative Burden Create Racialized Policy Feedback? How Losing Access to Public Benefits Impacts Trust in Government</a></h4><p class="with">with James Wright and Jeongmin Oh</p><p class="venue"><i>Journal of Public Administration Research and Theory</i> 34(3): 432–447 (2024)</p></article>
+<article class="paper"><h4><a href="https://onlinelibrary.wiley.com/doi/10.1111/rego.12583">Regulation Timing in the States: The Role of Divided Government and Legislative Recess</a></h4><p class="with">with Tracey Bark and Ani Ter-Mkrtchyan</p><p class="venue"><i>Regulation &amp; Governance</i> 18(4): 1369–1394 (2024)</p></article>
+<article class="paper"><h4><a href="https://www.nature.com/articles/s41598-023-50936-1">Racial Discrimination and Administrative Burden in Access to Public Services</a></h4><p class="with">with Sebastian Jilke</p><p class="venue"><i>Nature: Scientific Reports</i> 14(1), 1071 (2024)<span class="tag">Open access</span></p></article>
+<article class="paper"><h4><a href="https://www.sciencedirect.com/science/article/pii/S004727272400032X?dgcid=coauthor">Understanding and Increasing Policymakers’ Sensitivity to Program Impact</a></h4><p class="with">with Mattie Toma</p><p class="venue"><i>Journal of Public Economics</i> 234, 105096 (2024)</p></article>
+<article class="paper"><h4><a href="https://onlinelibrary.wiley.com/doi/abs/10.1111/puar.13722">How Reducing Documentation Burdens Impacts Equity in Access to Small Business COVID-19 Relief Funding</a></h4><p class="with">with Heather Kappes and Miles Williams</p><p class="venue"><i>Public Administration Review</i> 84(4): 674–695 (2024)</p></article>
+<article class="paper"><h4><a href="https://academic.oup.com/jpart/advance-article-abstract/doi/10.1093/jopart/muad018/7243869?redirectedFrom=fulltext">Does Reducing Counselor Workload Enhance Equity at the Front-Lines? Evidence from Burdensome College Financial Aid Programs</a></h4><p class="with">with Katharine Meyer</p><p class="venue"><i>Journal of Public Administration Research and Theory</i> 34(1): 16–38 (2024)</p></article>
+<article class="paper"><h4><a href="https://journals.sagepub.com/doi/10.3102/0013189X231161318">How Did Colleges Disburse Emergency Aid During COVID-19? A Framework for Evaluating the Higher Education Emergency Relief Fund</a></h4><p class="with">with David Schwegman, Michael Hand, and Michael DiDomenico</p><p class="venue"><i>Educational Researcher</i> 52(5): 259–271 (2023)</p></article>
+<article class="paper"><h4><a href="https://iopscience.iop.org/article/10.1088/2515-7620/acffae">The Causal Impact of Local Weather Anomalies on Beliefs about Climate Change</a></h4><p class="with">with Deven Carlson, Hank Jenkins-Smith, Carol Silva, and Nina Carlson</p><p class="venue"><i>Environmental Research Communications</i> 5(11) (2023)</p></article>
+<article class="paper"><h4><a href="https://onlinelibrary.wiley.com/doi/full/10.1111/puar.13568">Health in Citizen-State Interactions: How Physical and Mental Health Problems Shape Experiences of Administrative Burden and Reduce Take-up</a></h4><p class="with">with Julian Christensen, Pamela Herd, and Donald Moynihan</p><p class="venue"><i>Public Administration Review</i> 83(2): 385–400 (2023)<span class="tag">Open access</span></p></article>
+<article class="paper"><h4><a href="https://bristoluniversitypressdigital.com/view/journals/pp/51/1/article-p2.xml">Integrating Identity in Policy Design Theory: How Linked Fate and Identity Salience Impact Public Support for Affirmative Action</a></h4><p class="with">with Edith Lui</p><p class="venue"><i>Policy and Politics</i> 51(1): 2–27 (2023)</p></article>
+<article class="paper"><h4><a href="https://journals.sagepub.com/doi/abs/10.1177/02750740221128554">Resistance or capitulation? Anger, shame, and citizens’ behaviors during interactions with the administrative state</a></h4><p class="with">with Julian Christensen and Kristina Jessen Hansen</p><p class="venue"><i>American Review of Public Administration</i> 52(8): 535–557 (2022)</p></article>
+<article class="paper"><h4><a href="https://www.healthaffairs.org/doi/10.1377/hlthaff.2022.00504">Identifying and Exploring Disability Bias in Public Opinion on Scarce Resource Allocation During COVID-19</a></h4><p class="with">with Ari Ne’eman, Monica Schneider, and Dara Strolovitch</p><p class="venue"><i>Health Affairs</i> 41(10) (2022)</p></article>
+<article class="paper"><h4><a href="https://link.springer.com/article/10.1057/s41309-021-00129-w">Measuring Interest Group Agendas in Regulatory Proposals: A Method and the Case of U.S. Education Policy</a></h4><p class="with">with Sam Workman, Deven Carlson, and Tracey Bark</p><p class="venue"><i>Interest Groups and Advocacy</i> 11: 26–45 (2022)</p></article>
+<article class="paper"><h4><a href="https://journals.sagepub.com/eprint/5QIP5VNDPGVIWHQAY6FT/full">Working Within a System of Administrative Burden: How Street-level Bureaucrats’ Role Perceptions Shape Access to the Promise of Higher Education</a></h4><p class="with">with Kylie Smith</p><p class="venue"><i>Administration and Society</i> 54(2): 167–211 (2022)</p></article>
+<article class="paper"><h4><a href="https://www.journals.uchicago.edu/doi/10.1086/711299">Interjurisdictional Competition and Policy Preferences of the Public: Modeling Public Preferences on the Oklahoma Penny Sales Tax Referendum</a></h4><p class="with">with Deven Carlson and Byron Carlson</p><p class="venue"><i>The Journal of Politics</i> 83(3): 1114–1131 (2021)</p></article>
+<article class="paper"><h4><a href="https://journals.sagepub.com/doi/full/10.3102/0162373721993149">Does Free Community College Improve Student Outcomes? Evidence from a Regression Discontinuity Design</a></h4><p class="with">Sole author</p><p class="venue"><i>Educational Evaluation and Policy Analysis</i> 43(2): 329–350 (2021)</p></article>
+<article class="paper"><h4><a href="https://journals.sagepub.com/doi/abs/10.3102/00028312211003501">Can Free Community College Close Racial Disparities in Postsecondary Attainment? How Tulsa Achieves Impacts Racially Minoritized Student Outcomes</a></h4><p class="with">with Denisa Gandara</p><p class="venue"><i>American Educational Research Journal</i> 58(6): 1142–1177 (2021)</p></article>
+<article class="paper"><h4>Socioeconomic Status, Race, and Public Support for School Integration Policy</h4><p class="with">with Deven Carlson</p><p class="venue"><i>AERA Open</i> 7(1): 1–16 (2021)</p></article>
+<article class="paper"><h4><a href="https://ir.library.louisville.edu/cgi/viewcontent.cgi?article=1725&amp;context=jsfa">Estimating the Spillover Effects of the Tennessee Promise: Exploring Changes in Tuition, Fees, and Enrollment</a></h4><p class="with">Sole author</p><p class="venue"><i>Journal of Student Financial Aid</i> 50(1) (2021)</p></article>
+<article class="paper"><h4><a href="https://onlinelibrary.wiley.com/doi/abs/10.1111/puar.13311">Just or Unjust? How Ideological Beliefs Shape Street-level Bureaucrats’ Perceptions of Administrative Burden</a></h4><p class="with">with Ani Ter-Mkrtchyan, Wesley Wehde, and Kylie Smith</p><p class="venue"><i>Public Administration Review</i> 81(4): 610–624 (2021)<span class="tag">Top Cited Article Award</span></p></article>
+<article class="paper"><h4><a href="https://onlinelibrary.wiley.com/doi/epdf/10.1111/psj.12347">Deserving to Whom? Investigating Heterogeneity in the Impact of Social Constructions of Target Populations on Support for Affirmative Action</a></h4><p class="with">Sole author</p><p class="venue"><i>Policy Studies Journal</i> 49(1): 268–299 (2021)</p></article>
+<article class="paper"><h4><a href="https://www.degruyter.com/document/doi/10.1515/npf-2019-0052/html">Exploring Public Perceptions of Nonprofit Advocacy</a></h4><p class="with">with Alisa Hicklin Fryar and Tyler Johnson</p><p class="venue"><i>Nonprofit Policy Forum</i> 12(2): 311–340 (2020)</p></article>
+<article class="paper"><h4><a href="https://www.tandfonline.com/doi/abs/10.1080/00221546.2019.1706015?journalCode=uhej20">The Politics of Designing Tuition-Free College: How Socially Constructed Target Populations Influence Policy Support</a></h4><p class="with">Sole author</p><p class="venue"><i>The Journal of Higher Education</i> 91(6): 888–926 (2020)</p></article>
+<article class="paper"><h4><a href="https://journals.sagepub.com/doi/full/10.3102/0002831219851729">The Effects of Socioeconomic Integration on Racial and Ethnic Diversity in the Wake County Public School System</a></h4><p class="with">with Deven Carlson, Joshua Cowen, Andrew McEachin, and Matthew Lenard</p><p class="venue"><i>American Educational Research Journal</i> 57(1): 258–304 (2020)</p></article>
+<article class="paper"><h4><a href="https://direct.mit.edu/edfp/article/15/1/136/10318/Supplement-or-Supplant-Estimating-the-Impact-of">Supplement or Supplant? Estimating the Effects of Lottery Earmarks on State Higher Education Funding</a></h4><p class="with">with Wesley Wehde and Madeleine Stucky</p><p class="venue"><i>Education Finance and Policy</i> 15(1): 136–163 (2020)</p></article>
+<article class="paper"><h4><a href="https://journals.sagepub.com/doi/abs/10.1177/0095399718810194">Issue Prioritization by University Presidents: The Influence of Organizational Structure</a></h4><p class="with">with Tracey Bark</p><p class="venue"><i>Administration and Society</i> 51(6): 915–950 (2019)</p></article>
+<article class="paper"><h4><a href="https://muse.jhu.edu/article/747807/pdf">Public Perceptions of Income Share Agreements: Evidence from a Public Opinion Survey</a></h4><p class="with">with Jennifer Delaney and Maria Soler</p><p class="venue"><i>Journal of Education Finance</i> 45(1): 97–122 (2019)</p></article>
+<article class="paper"><h4><a href="https://onlinelibrary.wiley.com/doi/abs/10.1111/puar.12939">Understanding Local Service Delivery Arrangements: Is ICMA Data Reliable?</a></h4><p class="with">with Meeyoung Lamothe and Scott Lamothe</p><p class="venue"><i>Public Administration Review</i> 78(4): 613–625 (2018)</p></article>
+
+    <hr>
+    <h2 id="s-other">Other Publications</h2>
+    <p class="note">Book chapters and encyclopedia entries.</p>
+    <article class="paper"><h4>When Intuition Misfires: A Meta-analysis of Performance-Based Funding</h4><p class="with">with Alisa Hicklin Fryar and Nicholas Hillman</p><p class="venue">in <i>Research Handbook on Quality, Performance and Accountability in Higher Education</i>, edited by Ellen Hazelkorn, Alexander McCormick, and Hamish Coates. Edward Elgar Publishing. (2018)</p></article>
+<article class="paper"><h4>Nonprofit Lobbying</h4><p class="with">with Meeyoung Lamothe</p><p class="venue">in <i>Global Encyclopedia of Public Administration, Public Policy, and Governance</i>, edited by Ali Farazmand. Springer International Publishing. (2017)</p></article>
+<article class="paper"><h4>Alternative Affirmative Action: Evaluating Diversity at Flagship Universities under Race Blind Admissions</h4><p class="with">Sole author</p><p class="venue"><i>Ramapo Journal of Law and Society</i>. (2016)</p></article>
+
+    <hr>
+    <h2 id="s-policy">Policy Reports &amp; Briefs <span class="count">20</span></h2>
+    <article class="paper"><h4><a href="https://oes.gsa.gov/projects/ticket-to-work/">Increasing participation in Ticket to Work through redesigned mailers</a></h4><p class="with">with William Schultz and Elana Safran</p><p class="venue">Office of Evaluation Sciences, U.S. General Services Administration. 2023</p></article>
+<article class="paper"><h4><a href="https://ies.ed.gov/ncee/pubs/2023006/">Investigating the Scope and Implementation of Return to Title IV Funds</a></h4><p class="with">with Oded Gurantz and Mary Clair Turner</p><p class="venue">Institute of Education Sciences, U.S. Department of Education. Washington, D.C. 2023</p></article>
+<article class="paper"><h4><a href="https://www.atixa.org/blog/atixa-2022-research-award-grant-recipient-four-part-blog-series-part-i/">The Implications of Implementation Burdens for Title IX Officers and Students</a></h4><p class="with">with Daniel Fay, Emily Boykin, and Jaeyeong Nam</p><p class="venue">Association for Title IX Administrators Newsletter. 2023</p></article>
+<article class="paper"><h4><a href="https://www.brookings.edu/blog/brown-center-chalkboard/2023/02/09/the-school-counselor-staffing-landscape-policies-and-practice/">The school counselor staffing landscape: Policies and practice</a></h4><p class="with">with Katharine Meyer</p><p class="venue">Washington, DC: The Brown Center Chalkboard, Brookings Institution. 2023</p></article>
+<article class="paper"><h4><a href="https://oes.gsa.gov/projects/policymakers-impact/">Understanding and Improving How Policymakers Respond to Program Impact</a></h4><p class="with">with Mattie Toma</p><p class="venue">Office of Evaluation Sciences. 2022</p></article>
+<article class="paper"><h4><a href="https://oes.gsa.gov/projects/business-relief-distribution/">How Documentation Burdens Affect the Equitable Distribution of Small Business Relief Funding</a></h4><p class="with">with Heather Kappes and Miles Williams</p><p class="venue">Office of Evaluation Sciences. 2021</p></article>
+<article class="paper"><h4><a href="https://oes.gsa.gov/assets/abstracts/1805-aotc-abstract.pdf">Increasing Take-up of the American Opportunity Tax Credit</a></h4><p class="with">with Crystal Hall, Anne Herlache, and Mary Clair Turner</p><p class="venue">Office of Evaluation Sciences. 2021</p></article>
+<article class="paper"><h4><a href="https://oes.gsa.gov/collaborations/HEERF-eval-design/">Evaluating the Effects of HEERF Aid to Students</a></h4><p class="with">with David Schwegman, Michael DiDomenico, and Michael Hand</p><p class="venue">Office of Evaluation Sciences. 2021</p></article>
+<article class="paper"><h4><a href="https://medium.com/3streams/how-politics-shapes-the-implementation-of-administrative-burdensome-policies-161955ffbdf8?source=social.tw&amp;_branch_match_id=753750176930229040">Why do Conservatives Love Government Red Tape?</a></h4><p class="with">with Ani Ter-Mkrtchyan and Wesley Wehde</p><p class="venue">3Streams. 2020</p></article>
+<article class="paper"><h4><a href="https://robertkelchen.com/summer-higher-education-policy-seminar/">Working within a System of Administrative Burden: How Counselors Shape Access to the Promise of Higher Education</a></h4><p class="with">Sole author</p><p class="venue">Summer Higher Education Policy Forum. 2020</p></article>
+<article class="paper"><h4><a href="https://zoom.us/rec/play/uJUodLiqrT83GdzEtwSDAKR_W9XsLaKsgCZKqaVYyUa1AncHM1GnYrYVYbdkUthOEUXzBNu0WID3N-DK?continueMode=true">Higher Education Affordability and Student Impact</a></h4><p class="with">Sole author</p><p class="venue">Higher Ed Community Forum. 2020</p></article>
+<article class="paper"><h4><a href="https://www.freecollegenow.org/bell_research">New Research Demonstrates Public Support of Free College Programs is Impacted by Program Design</a></h4><p class="with">Sole author</p><p class="venue">The Campaign for Free College Tuition. 2020</p></article>
+<article class="paper"><h4><a href="http://theconversation.com/what-americans-think-about-who-deserves-tuition-free-college-129962">What Americans think about who deserves tuition-free college</a></h4><p class="with">Sole author</p><p class="venue">The Conversation. 2020</p></article>
+<article class="paper"><h4><a href="http://www.hunt-institute.org/resources/2019/10/intersection-webinar-recap-blog-socioeconomic-based-school-assignment-policy-and-racial-segregation-levels/">Can School Districts Achieve Racial Integration by Pursuing Socioeconomic Integration?</a></h4><p class="with">with Deven Carlson</p><p class="venue">Presented for the Intersection Webinar hosted by the Hunt Institute. 2019</p></article>
+<article class="paper"><h4><a href="https://www.brookings.edu/blog/brown-center-chalkboard/2019/07/15/can-school-districts-achieve-racial-integration-by-pursuing-socioeconomic-integration/">Can School Districts Achieve Racial Integration by Pursuing Socioeconomic Integration?</a></h4><p class="with">with Deven Carlson</p><p class="venue">Washington, DC: The Brown Center Chalkboard, Brookings Institution. 2019</p></article>
+<article class="paper"><h4>Crossing the Finish Line: The Effects of Tulsa Achieves on Student Persistence and Completion</h4><p class="with">Sole author</p><p class="venue">Program Evaluation Report for Tulsa Community College. 2019</p></article>
+<article class="paper"><h4>Why Performance-Based Funding Fails to Improve Graduation Rates: A Public Management Perspective</h4><p class="with">Sole author</p><p class="venue">Scholars Strategy Network Policy Brief. 2018</p></article>
+<article class="paper"><h4><a href="https://www.brookings.edu/blog/brown-center-chalkboard/2018/05/09/who-wins-and-who-loses-when-states-earmark-lottery-revenue-for-higher-education/">Who Wins and Who Loses When States Earmark Lottery Revenue for Higher Education?</a></h4><p class="with">with Wesley Wehde and Madeleine Stucky</p><p class="venue">Washington, DC: The Brown Center Chalkboard, Brookings Institution. 2018</p></article>
+<article class="paper"><h4>The Warrior Scholar Project STEM Program Evaluation</h4><p class="with">with Tyler Camarillo</p><p class="venue">The Warrior Scholars Project. 2017</p></article>
+<article class="paper"><h4>When Intuition Misfires: The Puzzle of Performance-Based Funding in Higher Education</h4><p class="with">Sole author</p><p class="venue">Forum of the American Journal of Education. 2017</p></article>
+
+    <hr>
+    <h2 id="s-progress">Selected Works in Progress</h2>
+    <div class="two"><article class="paper"><h4>Citizen-Agents or State-Agents? How Bureaucrats Respond to Conflicts Between Organizational Reputation, Self-Interest, and Client Outcomes</h4><p class="with">with Daniel Fay, Emily Boykin, and Jaeyeong Nam</p></article>
+<article class="paper"><h4>Trauma in Citizen-State Interactions: Implications for Administrative Burden, Inequality, and Citizen Outcomes</h4><p class="with">with Noam Tarshish</p></article>
+<article class="paper"><h4>Evaluating the Impact of Counselor-to-Student Ratio Policies on College Access and Success</h4><p class="with">with Katharine Meyer</p></article>
+<article class="paper"><h4>How Increasing Complexity in Educational Transitions Impacts Student Outcomes</h4><p class="with">with Thorbjørn Guul and Peter Damgaard</p></article>
+<article class="paper"><h4>Evaluating the return on investment of Promise programs in Texas</h4><p class="with">with Denisa Gandara</p></article>
+<article class="paper"><h4>Debiasing Fraud Perceptions with LLMs</h4><p class="with">with Sebastian Jilke and John Marvel</p></article></div>
+
+    <hr>
+    <h2 id="s-media">Media</h2>
+    <article class="paper"><h4><a href="https://www.seattletimes.com/seattle-news/homeless/under-trumps-medicaid-changes-extra-paperwork-creates-a-catch-22/?utm_source=LBJ+School+of+Public+Affairs&amp;utm_campaign=2a4dc4dd2c-EMAIL_CAMPAIGN_073125_LBJintheNews&amp;utm_medium=email&amp;utm_term=0_43bcc30afe-2a4dc4dd2c-486310496&amp;ct=t(EMAIL_CAMPAIGN_073125_LBJintheNews)&amp;mc_cid=2a4dc4dd2c&amp;mc_eid=326e647eeb">Under Trump’s Medicaid changes, extra paperwork creates a ‘catch-22’</a></h4><p class="with">Seattle Times</p><p class="venue">2025</p></article>
+<article class="paper"><h4><a href="https://www.timeshighereducation.com/news/us-reliance-lottery-funding-raises-university-concerns">US reliance on lottery funding raises university concerns</a></h4><p class="with">Times Higher Education</p><p class="venue">2023</p></article>
+<article class="paper"><h4><a href="https://www.axios.com/2023/08/31/us-school-education-satisfaction-survey-2023">Massive school satisfaction gap pits parents against everyone else</a></h4><p class="with">Axios</p><p class="venue">2023</p></article>
+<article class="paper"><h4><a href="https://www.texastribune.org/2023/07/11/texas-universities-admissions-affirmative-action/?utm_campaign=trib-social-buttons&amp;utm_source=twitter&amp;utm_medium=social">Race-based college admissions are now banned, but Texas schools still have ways to ensure campuses are diverse</a></h4><p class="with">Texas Tribune</p><p class="venue">2023</p></article>
+<article class="paper"><h4><a href="https://www.cnn.com/2022/06/05/us/free-college-tuition-waive-biden-new-mexico-cec/index.html">Why free college is so elusive — and how we can get closer to establishing it</a></h4><p class="with">CNN</p><p class="venue">2022</p></article>
+<article class="paper"><h4><a href="https://www.tpr.org/podcast/the-source/2022-03-13/what-can-be-done-to-close-the-latino-college-gap">What can be done to close the Latino college gap?</a></h4><p class="with">Texas Public Radio</p><p class="venue">2022</p></article>
+<article class="paper"><h4><a href="https://govinnovator.com/elizabeth-bell/">How Promise Programs are expanding college access, affordability, and degree attainment</a></h4><p class="with">Government Innovator podcast hosted by Andy Feldman</p><p class="venue">2022</p></article>
+  </section>
+</main>
+
+<footer><div>Elizabeth Bell · LBJ School of Public Affairs, The University of Texas at Austin · Updated November 2026</div></footer>
+
+<script>
+(function () {
+  var pages = ['about', 'research'];
+  function show() {
+    var h = (location.hash || '#about').slice(1);
+    if (pages.indexOf(h) === -1) h = 'about';
+    pages.forEach(function (p) {
+      document.getElementById('page-' + p).hidden = p !== h;
+    });
+    document.querySelectorAll('[data-page]').forEach(function (a) {
+      if (a.dataset.page === h) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current');
+    });
+    window.scrollTo(0, 0);
+  }
+  window.addEventListener('hashchange', show);
+  document.querySelectorAll('[data-jump]').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      e.preventDefault();
+      if (location.hash !== '#research') location.hash = 'research';
+      var t = document.getElementById(a.dataset.jump);
+      if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+  show();
+})();
+</script>
+</body>
+</html>
